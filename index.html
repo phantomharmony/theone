@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="THE ONE Cyberarena — стильный компьютерный клуб с мощным железом, гибкими тарифами и зонами для игры и отдыха." />
+  <title>THE ONE Cyberarena</title>
+  <style>
+    :root {
+      --bg: #0a0a0c;
+      --bg-soft: #111118;
+      --card: #13131a;
+      --card-2: #181824;
+      --line: rgba(255, 255, 255, 0.08);
+      --text: #f4f7fb;
+      --muted: rgba(244, 247, 251, 0.72);
+      --purple: #8b5cf6;
+      --green: #10b981;
+      --purple-glow: rgba(139, 92, 246, 0.38);
+      --green-glow: rgba(16, 185, 129, 0.28);
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --max: 1220px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(16, 185, 129, 0.12), transparent 30%),
+        linear-gradient(180deg, #0a0a0c 0%, #09090b 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), transparent 92%);
+      opacity: 0.35;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      color: rgba(244, 247, 251, 0.84);
+      border-radius: 999px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 12px;
+      backdrop-filter: blur(16px);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--green));
+      box-shadow: 0 0 18px var(--purple-glow);
+    }
+
+    .section-title {
+      margin: 16px 0 12px;
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .section-lead {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(15px, 1.4vw, 18px);
+      line-height: 1.7;
+    }
+
+    .glass {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(10, 10, 12, 0.78);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 84px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: max-content;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.95), rgba(16, 185, 129, 0.95));
+      color: white;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.28);
+    }
+
+    .brand-text {
+      display: grid;
+      gap: 2px;
+    }
+
+    .brand-text strong {
+      font-size: 18px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand-text span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: rgba(244, 247, 251, 0.76);
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--green));
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.22s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: white;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      color: rgba(244, 247, 251, 0.92);
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .phone-pill:hover {
+      transform: translateY(-1px);
+      border-color: rgba(139, 92, 246, 0.42);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, var(--purple), #6d28d9 55%, var(--green));
+      box-shadow: 0 18px 36px rgba(139, 92, 246, 0.24);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 20px 48px rgba(139, 92, 246, 0.34);
+    }
+
+    .btn-secondary {
+      color: white;
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .burger {
+      display: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+      color: white;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .burger span {
+      width: 20px;
+      height: 2px;
+      background: white;
+      position: relative;
+      border-radius: 999px;
+    }
+
+    .burger span::before,
+    .burger span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 20px;
+      height: 2px;
+      background: white;
+      border-radius: 999px;
+    }
+
+    .burger span::before {
+      top: -6px;
+    }
+
+    .burger span::after {
+      top: 6px;
+    }
+
+    .hero {
+      position: relative;
+      padding: 48px 0 44px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 28px;
+      align-items: center;
+      min-height: calc(100vh - 84px);
+    }
+
+    .hero-copy {
+      position: relative;
+      padding: 28px 0;
+    }
+
+    .hero-copy h1 {
+      margin: 18px 0 18px;
+      font-size: clamp(42px, 6vw, 82px);
+      line-height: 0.93;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+      max-width: 10ch;
+    }
+
+    .hero-copy h1 .accent {
+      background: linear-gradient(90deg, #ffffff 0%, #d8d8e6 35%, var(--purple) 62%, var(--green) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      max-width: 680px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: clamp(16px, 1.55vw, 19px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .stat {
+      padding: 18px 18px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(24px, 2.3vw, 34px);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 700px;
+      padding: 26px;
+      border-radius: 34px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(139, 92, 246, 0.32), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.22), transparent 28%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      pointer-events: none;
+    }
+
+    .visual-frame {
+      position: absolute;
+      inset: 26px;
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.32), transparent 24%),
+        radial-gradient(circle at 70% 30%, rgba(16, 185, 129, 0.22), transparent 28%),
+        linear-gradient(180deg, rgba(7, 7, 10, 0.2), rgba(7, 7, 10, 0.9));
+    }
+
+    .visual-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 56px 56px;
+      opacity: 0.18;
+      mask-image: radial-gradient(circle at center, black 30%, transparent 78%);
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(10px);
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .orb.one {
+      width: 260px;
+      height: 260px;
+      left: -42px;
+      top: 110px;
+      background: rgba(139, 92, 246, 0.42);
+    }
+
+    .orb.two {
+      width: 220px;
+      height: 220px;
+      right: -28px;
+      top: 40px;
+      background: rgba(16, 185, 129, 0.28);
+      animation-delay: 1.6s;
+    }
+
+    .orb.three {
+      width: 200px;
+      height: 200px;
+      right: 16px;
+      bottom: 40px;
+      background: rgba(139, 92, 246, 0.18);
+      animation-delay: 3s;
+    }
+
+    .tower {
+      position: absolute;
+      left: 50%;
+      bottom: 28px;
+      width: min(78%, 420px);
+      transform: translateX(-50%);
+      height: 82%;
+      border-radius: 28px 28px 20px 20px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+        linear-gradient(180deg, #0f1016 0%, #0a0a0f 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03), 0 36px 80px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+    }
+
+    .tower::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, transparent 0 16%, rgba(255, 255, 255, 0.08) 16% 17%, transparent 17% 34%, rgba(255, 255, 255, 0.08) 34% 35%, transparent 35% 52%, rgba(255, 255, 255, 0.08) 52% 53%, transparent 53% 100%);
+      opacity: 0.25;
+    }
+
+    .tower::after {
+      content: "THE ONE";
+      position: absolute;
+      right: 22px;
+      top: 18px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.26em;
+      color: rgba(255, 255, 255, 0.6);
+      text-transform: uppercase;
+    }
+
+    .screen {
+      position: absolute;
+      left: 50%;
+      top: 36px;
+      width: 84%;
+      height: 40%;
+      transform: translateX(-50%);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 70% 30%, rgba(16, 185, 129, 0.44), transparent 28%),
+        radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.46), transparent 32%),
+        linear-gradient(135deg, #11111a, #07070c 52%, #0e1120);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.42), inset 0 0 40px rgba(139, 92, 246, 0.08);
+      overflow: hidden;
+    }
+
+    .screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 24%, transparent 76%, rgba(255, 255, 255, 0.06));
+      opacity: 0.5;
+    }
+
+    .screen::after {
+      content: "CYBERARENA";
+      position: absolute;
+      left: 18px;
+      bottom: 16px;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.52);
+    }
+
+    .led {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 88%;
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, var(--green), var(--purple), transparent);
+      filter: blur(0.5px);
+      box-shadow: 0 0 18px rgba(139, 92, 246, 0.56);
+    }
+
+    .led.top {
+      top: 14px;
+    }
+
+    .led.mid {
+      top: 52%;
+      opacity: 0.66;
+    }
+
+    .led.bottom {
+      bottom: 22px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.72), var(--green), transparent);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.42);
+    }
+
+    .card-pills {
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      top: 26px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 12px;
+      font-weight: 700;
+      backdrop-filter: blur(12px);
+    }
+
+    .chip i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px var(--green-glow);
+    }
+
+    .chip.purple i {
+      background: var(--purple);
+      box-shadow: 0 0 12px var(--purple-glow);
+    }
+
+    .pulse-ring {
+      position: absolute;
+      inset: auto auto 92px 34px;
+      width: 126px;
+      height: 126px;
+      border-radius: 50%;
+      border: 1px solid rgba(16, 185, 129, 0.22);
+      box-shadow: 0 0 60px rgba(16, 185, 129, 0.12);
+    }
+
+    .pulse-ring::before,
+    .pulse-ring::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 50%;
+      border: 1px solid rgba(139, 92, 246, 0.24);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    .pulse-ring::after {
+      inset: 34px;
+      animation-delay: 1.2s;
+    }
+
+    .zones-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .zone-card {
+      grid-column: span 6;
+      padding: 22px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .zone-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -20% -42% auto;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.2), transparent 62%);
+      z-index: -1;
+    }
+
+    .zone-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .zone-name {
+      display: grid;
+      gap: 8px;
+    }
+
+    .zone-name h3 {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: -0.04em;
+    }
+
+    .zone-badge {
+      display: inline-flex;
+      width: max-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: white;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.26), rgba(16, 185, 129, 0.18));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .zone-specs {
+      display: grid;
+      gap: 12px;
+    }
+
+    .spec {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .spec-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      flex: 0 0 auto;
+      background: linear-gradient(135deg, var(--purple), var(--green));
+      box-shadow: 0 0 18px rgba(139, 92, 246, 0.26);
+    }
+
+    .spec strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .spec span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .zone-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .zone-foot p {
+      margin: 0;
+      color: rgba(244, 247, 251, 0.72);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .mini-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.18);
+      color: #b8ffe5;
+      white-space: nowrap;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .mini-tag::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px var(--green-glow);
+    }
+
+    .pricing-wrap {
+      margin-top: 36px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .pricing-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 22px 0;
+    }
+
+    .pricing-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+      padding: 18px 0 8px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 900px;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      padding: 18px 16px;
+      text-align: left;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    tbody td {
+      padding: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      color: rgba(244, 247, 251, 0.84);
+      font-size: 15px;
+    }
+
+    tbody tr:hover {
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .rate-zone {
+      font-weight: 800;
+      color: white;
+    }
+
+    .rate-value {
+      font-weight: 800;
+      color: #e8ebff;
+    }
+
+    .rate-dash {
+      color: rgba(244, 247, 251, 0.32);
+    }
+
+    .price-legend {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      padding: 0 22px 22px;
+    }
+
+    .legend-item {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .legend-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .legend-item strong {
+      font-size: 18px;
+    }
+
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .contact-card {
+      padding: 24px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .contact-meta {
+      display: grid;
+      gap: 6px;
+    }
+
+    .contact-meta span {
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .contact-meta strong,
+    .contact-meta a {
+      font-size: 16px;
+      font-weight: 800;
+      color: white;
+      word-break: break-word;
+    }
+
+    .contact-action {
+      color: #b8ffe5;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+      align-self: center;
+    }
+
+    .socials {
+      display: grid;
+      gap: 14px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(139, 92, 246, 0.4);
+    }
+
+    .social-link div {
+      display: grid;
+      gap: 4px;
+    }
+
+    .social-link strong {
+      font-size: 16px;
+    }
+
+    .social-link span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .social-arrow {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.26), rgba(16, 185, 129, 0.18));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      flex: 0 0 auto;
+    }
+
+    .footer {
+      padding: 28px 0 44px;
+      color: rgba(244, 247, 251, 0.58);
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .footer strong {
+      color: white;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    [data-reveal].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      50% {
+        transform: translate3d(0, -12px, 0) scale(1.03);
+      }
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        transform: scale(0.95);
+        opacity: 0.4;
+      }
+      50% {
+        transform: scale(1.08);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .contacts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 620px;
+      }
+
+      .zone-card {
+        grid-column: span 12;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links,
+      .nav-actions {
+        display: none;
+      }
+
+      .burger {
+        display: inline-flex;
+      }
+
+      .mobile-panel {
+        display: none;
+        padding: 0 0 18px;
+      }
+
+      .mobile-panel.open {
+        display: block;
+      }
+
+      .mobile-menu {
+        display: grid;
+        gap: 10px;
+        padding: 16px;
+        margin-bottom: 18px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .mobile-menu a,
+      .mobile-menu .phone-pill,
+      .mobile-menu .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-grid {
+        min-height: auto;
+        padding-top: 24px;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .price-legend {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding: 72px 0;
+      }
+
+      .container {
+        width: min(100% - 20px, var(--max));
+      }
+
+      .nav {
+        min-height: 76px;
+      }
+
+      .brand-text span {
+        display: none;
+      }
+
+      .hero-copy h1 {
+        max-width: 100%;
+      }
+
+      .hero-visual {
+        min-height: 520px;
+        padding: 18px;
+        border-radius: 26px;
+      }
+
+      .visual-frame {
+        inset: 18px;
+      }
+
+      .card-pills {
+        left: 18px;
+        right: 18px;
+      }
+
+      .zone-head,
+      .zone-foot,
+      .pricing-top,
+      .contact-item,
+      .social-link {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .contact-action {
+        white-space: normal;
+      }
+
+      .price-legend {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="container">
+        <nav class="nav" aria-label="Основная навигация">
+          <a class="brand" href="#hero" aria-label="THE ONE Cyberarena">
+            <div class="brand-mark">1</div>
+            <div class="brand-text">
+              <strong>THE ONE</strong>
+              <span>Cyberarena</span>
+            </div>
+          </a>
+
+          <div class="nav-links">
+            <a href="#zones">Зоны</a>
+            <a href="#pricing">Цены</a>
+            <a href="#contacts">Контакты</a>
+          </div>
+
+          <div class="nav-actions">
+            <a class="phone-pill" href="tel:+77074029999">+7 (707) 402 9999</a>
+            <a class="btn btn-primary" href="#contacts">Забронировать</a>
+          </div>
+
+          <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobilePanel">
+            <span></span>
+          </button>
+        </nav>
+
+        <div class="mobile-panel" id="mobilePanel">
+          <div class="mobile-menu">
+            <a href="#zones">Зоны</a>
+            <a href="#pricing">Цены</a>
+            <a href="#contacts">Контакты</a>
+            <a class="phone-pill" href="tel:+77074029999">+7 (707) 402 9999</a>
+            <a class="btn btn-primary" href="#contacts">Забронировать</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-copy" data-reveal>
+              <div class="eyebrow">THE ONE Cyberarena</div>
+              <h1><span class="accent">Игровое пространство</span> для победителей</h1>
+              <p>
+                Добро пожаловать в THE ONE Cyberarena — стильный компьютерный клуб с мощным железом,
+                атмосферой киберпанка и комфортом для жарких каток, тренировок и отдыха.
+              </p>
+
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#contacts">Забронировать место</a>
+                <a class="btn btn-secondary" href="#zones">Смотреть зоны</a>
+              </div>
+
+              <div class="hero-stats">
+                <div class="stat">
+                  <strong>24/7</strong>
+                  <span>Работаем без пауз для ночных игр и турниров.</span>
+                </div>
+                <div class="stat">
+                  <strong>4</strong>
+                  <span>Игровые зоны: Общий зал, Standart, VIP и PS5.</span>
+                </div>
+                <div class="stat">
+                  <strong>100%</strong>
+                  <span>Фокус на комфорте, скорости и мощной атмосфере.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-visual" data-reveal>
+              <div class="visual-frame">
+                <div class="visual-grid"></div>
+                <div class="orb one"></div>
+                <div class="orb two"></div>
+                <div class="orb three"></div>
+                <div class="card-pills">
+                  <div class="chip purple"><i></i> Neon Power</div>
+                  <div class="chip"><i></i> Elite Hardware</div>
+                </div>
+
+                <div class="tower">
+                  <div class="screen"></div>
+                  <div class="led top"></div>
+                  <div class="led mid"></div>
+                  <div class="led bottom"></div>
+                </div>
+
+                <div class="pulse-ring"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="zones">
+        <div class="container">
+          <div data-reveal>
+            <div class="eyebrow">Зоны и железо</div>
+            <h2 class="section-title">Выбирай свою арену</h2>
+            <p class="section-lead">
+              Каждая зона оформлена для разного стиля игры: от массовых каток до топового фана на VIP-станциях и уютного отдыха на PS5.
+            </p>
+          </div>
+
+          <div class="zones-grid">
+            <article class="zone-card" data-reveal>
+              <div class="zone-head">
+                <div class="zone-name">
+                  <span class="zone-badge">Основной зал</span>
+                  <h3>Общий зал</h3>
+                </div>
+                <div class="mini-tag">Balanced Gaming</div>
+              </div>
+              <div class="zone-specs">
+                <div class="spec">
+                  <div class="spec-mark"></div>
+                  <div>
+                    <strong>Процессор</strong>
+                    <span>Intel Core i5 13400f</span>
+                  </div>
+                </div>
+                <div class="spec">
+                  <div class="spec-mark"></div>
+                  <div>
+                    <strong>Видеокарта</strong>
+                    <span>Gigabyte RTX 5060</span>
+                  </div>
+                </div>
+                <div class="spec">
+                  <div class="spec-mark"></div>
+                  <div>
+                    <strong>Монитор</strong>
+                    <span>Asus 310Hz</span>
+                  </div>
+                </div>
+                <div class="spec">
+                  <div class="spec-mark"></div>
+                  <div>
+                    <strong>Периферия</strong>
+                    <span>Наушники HyperX Cloud III, клавиатура Ajazz, мышь LOGITECH G PRO X Superlite</span>
+                  </div>
+                </div>
+              </div>
+              <div class="zone-foot">
+                <p>Сбалансированная зона для повседневной игры, тренировок и комфортных сессий.</p>
+                <span class="mini-tag">Recommended</span>
+              </div>
+            </article>
+
+            <article class="zone-card" data-reveal>
+              <div class="zone-head">
+                <div class="zone-name">
+                  <span class="zone-badge">Сильный старт</span>
+                  <h3>Standart</h3>
+                </div>
+                <div class="mini-tag">Fast & Stable</div>
+              </div>
+              <div class="zone-specs">
+                <div class="spec">
+                  <div class="spec-mark"></div>
+                  <div>
+                    <strong>Процессор</strong>
+                    <span>AMD Ryzen 5 7500F</span>
+                  </div>
+                </div>
+                <div class="spec">
+                  <div class="spec-mark"></div>
+                  <div>
+                    <strong>Видеокарта</strong>
+                    <span>RTX 5060</span>
+                  </div>
+                </div>
+                <div class="spec">
+                  <div class="spec-mark"></div>
+                  <div>
+                    <strong>Монитор</strong>
+                    <span>Asus 310hz</span>
+                  </div>
+                </div>
+                <div class="spec">
+                  <div class="spec-mark"></div>
+                  <div>
+                    <strong>Периферия</strong>
+                    <span>Наушники Logitech G PRO X, клавиатура VGN N75, мышь LOGITECH G PRO X Superlite</span>
+                  </div>
+                </div>
+              </div>
+              <div class="zone-foot">
+                <p>Оптимальный выбор для тех, кто хочет высокий FPS и комфорт на каждый день.</p>
+                <span class="mini-tag">Popular</span>
+              </div>
+            </article>
+
+            <article class="zone-card" data-reveal>
+              <div class="zone-head">
+                <div class="zone-name">
+                  <span class="zone-badge">Топовая мощь</span>
+                  <h3>VIP</h3>
+                </div>
+                <div class="mini-tag">Pro Level</div>
+              </div>
+              <div class="zone-specs">
+                <div class="spec">
+                  <div class="spec-mark"></div>
+                  <div>
+                    <strong>Процессор</strong>
+                    <span>AMD Ryzen 7 7800X3D</span>
+                  </div>
+                </div>
+                <div class="spec">
+                  <div class="spec-mark"></div>
+                  <div>
+                    <strong>Видеокарта</strong>
+                    <span>NVIDIA RTX 5070</span>
+                  </div>
+                </div>
+                <div class="spec">
+                  <div class="spec-mark"></div>
+                  <div>
+                    <strong>Монитор</strong>
+                    <span>Asus 380Hz</span>
+                  </div>
+                </div>
+                <div class="spec">
+                  <div class="spec-mark"></div>
+                  <div>
+                    <strong>Периферия</strong>
+                    <span>Наушники Logitech G PRO X, клавиатура Dark Project, мышь LOGITECH G PRO X Superlite 2</span>
+                  </div>
+                </div>
+              </div>
+              <div class="zone-foot">
+                <p>VIP-зона для максимального отклика, приватности и соревновательной игры.</p>
+                <span class="mini-tag">Elite</span>
+              </div>
+            </article>
+
+            <article class="zone-card" data-reveal>
+              <div class="zone-head">
+                <div class="zone-name">
+                  <span class="zone-badge">Консольная зона</span>
+                  <h3>PS5</h3>
+                </div>
+                <div class="mini-tag">Relax Mode</div>
+              </div>
+              <div class="zone-specs">
+                <div class="spec">
+                  <div class="spec-mark"></div>
+                  <div>
+                    <strong>Формат</strong>
+                    <span>Отдельная зона с консолями PlayStation 5 для комфортного отдыха.</span>
+                  </div>
+                </div>
+                <div class="spec">
+                  <div class="spec-mark"></div>
+                  <div>
+                    <strong>Подходит для</strong>
+                    <span>Дружеских матчей, казуальных сессий и перезагрузки после ПК-турниров.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="zone-foot">
+                <p>Уютная зона для тех, кто хочет сменить ритм и отдохнуть в консольном формате.</p>
+                <span class="mini-tag">Console Lounge</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pricing">
+        <div class="container">
+          <div data-reveal>
+            <div class="eyebrow">Цены и тарифы</div>
+            <h2 class="section-title">Прозрачные тарифы на все режимы</h2>
+            <p class="section-lead">
+              Таблица построена так, чтобы было удобно сравнивать почасовые и пакетные тарифы для всех зон. На мобильных экранах она прокручивается горизонтально.
+            </p>
+          </div>
+
+          <div class="pricing-wrap" data-reveal>
+            <div class="pricing-top">
+              <p class="pricing-note">Все цены указаны в тенге. Для PS5 в некоторых пакетах тариф не предусмотрен.</p>
+              <div class="mini-tag">24/7 pricing</div>
+            </div>
+
+            <div class="table-scroll" role="region" aria-label="Таблица цен" tabindex="0">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Тариф</th>
+                    <th>Общий</th>
+                    <th>Standart</th>
+                    <th>VIP</th>
+                    <th>PS5</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="rate-zone">1 Час</td>
+                    <td class="rate-value">1000</td>
+                    <td class="rate-value">1200</td>
+                    <td class="rate-value">1500</td>
+                    <td class="rate-value">1500</td>
+                  </tr>
+                  <tr>
+                    <td class="rate-zone">3 Часа</td>
+                    <td class="rate-value">2500</td>
+                    <td class="rate-value">2700</td>
+                    <td class="rate-value">3500</td>
+                    <td class="rate-value">3500</td>
+                  </tr>
+                  <tr>
+                    <td class="rate-zone">5 Часов</td>
+                    <td class="rate-value">3700</td>
+                    <td class="rate-value">4000</td>
+                    <td class="rate-value">5000</td>
+                    <td class="rate-value">6000</td>
+                  </tr>
+                  <tr>
+                    <td class="rate-zone">Утро (08:00-14:00)</td>
+                    <td class="rate-value">2000</td>
+                    <td class="rate-value">2500</td>
+                    <td class="rate-value">3000</td>
+                    <td class="rate-dash">—</td>
+                  </tr>
+                  <tr>
+                    <td class="rate-zone">День (11:00-17:00)</td>
+                    <td class="rate-value">3200</td>
+                    <td class="rate-value">3500</td>
+                    <td class="rate-value">4000</td>
+                    <td class="rate-dash">—</td>
+                  </tr>
+                  <tr>
+                    <td class="rate-zone">Полный день (08:00-18:00)</td>
+                    <td class="rate-value">2000</td>
+                    <td class="rate-value">2500</td>
+                    <td class="rate-value">3000</td>
+                    <td class="rate-dash">—</td>
+                  </tr>
+                  <tr>
+                    <td class="rate-zone">Ночь (22:00-08:00)</td>
+                    <td class="rate-value">3700</td>
+                    <td class="rate-value">4000</td>
+                    <td class="rate-value">5000</td>
+                    <td class="rate-dash">—</td>
+                  </tr>
+                  <tr>
+                    <td class="rate-zone">Турбо ночь (01:00-08:00)</td>
+                    <td class="rate-value">2500</td>
+                    <td class="rate-value">3000</td>
+                    <td class="rate-value">4000</td>
+                    <td class="rate-dash">—</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="price-legend">
+              <div class="legend-item">
+                <span>Общий зал</span>
+                <strong>Баланс цены и мощности</strong>
+              </div>
+              <div class="legend-item">
+                <span>Standart</span>
+                <strong>Усиленный сетап для FPS</strong>
+              </div>
+              <div class="legend-item">
+                <span>VIP</span>
+                <strong>Максимальный комфорт и топ железо</strong>
+              </div>
+              <div class="legend-item">
+                <span>PS5</span>
+                <strong>Отдельный консольный отдых</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contacts">
+        <div class="container">
+          <div data-reveal>
+            <div class="eyebrow">Контакты</div>
+            <h2 class="section-title">Связь, бронь и соцсети</h2>
+            <p class="section-lead">
+              Свяжись с нами для бронирования, уточнения тарифов или организации игровой встречи. Клуб работает круглосуточно, без выходных.
+            </p>
+          </div>
+
+          <div class="contacts-grid">
+            <div class="contact-card" data-reveal>
+              <h3 style="margin:0;font-size:28px;letter-spacing:-0.04em;">THE ONE Cyberarena</h3>
+              <p class="pricing-note" style="margin-top:10px;">Ул. Тауелсиздик 25, Блок 1</p>
+
+              <div class="contact-list">
+                <div class="contact-item">
+                  <div class="contact-meta">
+                    <span>Адрес</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=%D1%83%D0%BB.%20%D0%A2%D0%B0%D1%83%D0%B5%D0%BB%D1%81%D0%B8%D0%B7%D0%B4%D0%B8%D0%BA%2025,%20%D0%91%D0%BB%D0%BE%D0%BA%201" target="_blank" rel="noopener noreferrer">ул. Тауелсиздик 25, Блок 1</a>
+                  </div>
+                  <a class="contact-action" href="https://www.google.com/maps/search/?api=1&query=%D1%83%D0%BB.%20%D0%A2%D0%B0%D1%83%D0%B5%D0%BB%D1%81%D0%B8%D0%B7%D0%B4%D0%B8%D0%BA%2025,%20%D0%91%D0%BB%D0%BE%D0%BA%201" target="_blank" rel="noopener noreferrer">Открыть карту</a>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-meta">
+                    <span>Телефон</span>
+                    <a href="tel:+77074029999">+7 (707) 402 9999</a>
+                  </div>
+                  <a class="contact-action" href="tel:+77074029999">Позвонить</a>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-meta">
+                    <span>График</span>
+                    <strong>24/7</strong>
+                  </div>
+                  <div class="contact-action">Работаем каждый день</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-card" data-reveal>
+              <h3 style="margin:0;font-size:28px;letter-spacing:-0.04em;">Социальные сети</h3>
+              <p class="pricing-note" style="margin-top:10px;">Подписывайся, чтобы не пропустить турниры, новости и акции.</p>
+
+              <div class="socials" style="margin-top:18px;">
+                <a class="social-link" href="https://www.instagram.com/theone_cyberarena" target="_blank" rel="noopener noreferrer">
+                  <div>
+                    <strong>Instagram</strong>
+                    <span>@theone_cyberarena</span>
+                  </div>
+                  <div class="social-arrow">↗</div>
+                </a>
+
+                <a class="social-link" href="https://www.tiktok.com/@theone_cyberclub" target="_blank" rel="noopener noreferrer">
+                  <div>
+                    <strong>TikTok</strong>
+                    <span>@theone_cyberclub</span>
+                  </div>
+                  <div class="social-arrow">↗</div>
+                </a>
+
+                <a class="social-link" href="tel:+77074029999">
+                  <div>
+                    <strong>Бронирование по телефону</strong>
+                    <span>+7 (707) 402 9999</span>
+                  </div>
+                  <div class="social-arrow">↗</div>
+                </a>
+              </div>
+
+              <div style="margin-top:18px;padding:18px;border-radius:18px;background:linear-gradient(135deg, rgba(139,92,246,0.16), rgba(16,185,129,0.1));border:1px solid rgba(255,255,255,0.08);">
+                <strong style="display:block;margin-bottom:8px;">Быстрая бронь</strong>
+                <p class="pricing-note" style="margin:0;">Нажми на кнопку бронирования в меню или позвони нам, чтобы забрать лучший слот в нужной зоне.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <strong>THE ONE Cyberarena</strong><br />
+        Администрация не несёт ответственности за потерянные вещи!
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const burger = document.querySelector('.burger');
+    const mobilePanel = document.getElementById('mobilePanel');
+    const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu a[href^="#"]');
+    const sections = document.querySelectorAll('section[id]');
+    const revealItems = document.querySelectorAll('[data-reveal]');
+
+    const closeMobileMenu = () => {
+      mobilePanel.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    };
+
+    burger?.addEventListener('click', () => {
+      const opened = mobilePanel.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(opened));
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (mobilePanel.classList.contains('open')) {
+          closeMobileMenu();
+        }
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!mobilePanel.contains(target) && !burger.contains(target)) {
+        closeMobileMenu();
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    revealItems.forEach((item, index) => {
+      item.style.transitionDelay = `${Math.min(index * 80, 320)}ms`;
+      observer.observe(item);
+    });
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          document.querySelectorAll('.nav-links a').forEach((link) => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    }, { threshold: 0.45 });
+
+    sections.forEach((section) => sectionObserver.observe(section));
+  </script>
+</body>
+</html>
